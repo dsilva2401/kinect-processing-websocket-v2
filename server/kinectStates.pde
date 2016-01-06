@@ -5,11 +5,17 @@ public class KinectStates {
 	PVector neckPos;
 	PVector leftShoulderPos;
 	PVector rightShoulderPos;
+	PVector leftElbowPos;
+	PVector rightElbowPos;
+	PVector leftHandPos;
+	PVector rightHandPos;
 	PVector torsoPos;
 	PVector leftHipPos;
 	PVector rightHipPos;
-	PVector leftHandPos;
-	PVector rightHandPos;
+	PVector leftKneePos;
+	PVector rightKneePos;
+	PVector leftFootPos;
+	PVector rightFootPos;
 	int states[][][];
 	int currentState;
 	String actions[];
@@ -20,11 +26,17 @@ public class KinectStates {
 		neckPos = new PVector();
 		leftShoulderPos = new PVector();
 		rightShoulderPos = new PVector();
+		leftElbowPos = new PVector();
+		rightElbowPos = new PVector();
 		torsoPos = new PVector();
 		leftHipPos = new PVector();
 		rightHipPos = new PVector();
 		leftHandPos = new PVector();
 		rightHandPos = new PVector();
+		leftKneePos = new PVector();
+		rightKneePos = new PVector();
+		leftFootPos = new PVector();
+		rightFootPos = new PVector();
 		int _states[][][] = {
 			{	{1,0},	{3,0},	{5,0},	{7,0},	{9,0},	{11,0},	{0,0}	},
 			{	{1,0},	{2,0},	{0,0},	{0,0},	{0,0},	{0,0},	{0,0}	},
@@ -48,10 +60,24 @@ public class KinectStates {
 
 	public String getCurrentAction() {
   
-                // String data = "{"+"\"head\":["+headPos.x+","+headPos.y+","+headPos.z+"]"+"}";
-                println( "{"+
-                    "\"head\":["+headPos.x+","+headPos.y+","+headPos.z+"]"+
-                "}" );
+		// String data = "{"+"\"head\":["+headPos.x+","+headPos.y+","+headPos.z+"]"+"}";
+		println("{"+
+			"\"head\":["+headPos.x+","+headPos.y+","+headPos.z+"],"+
+			"\"neck\":["+neckPos.x+","+neckPos.y+","+neckPos.z+"],"+
+			"\"leftShoulder\":["+leftShoulderPos.x+","+leftShoulderPos.y+","+leftShoulderPos.z+"],"+
+			"\"rightShoulder\":["+rightShoulderPos.x+","+rightShoulderPos.y+","+rightShoulderPos.z+"],"+
+			"\"leftElbow\":["+leftElbowPos.x+","+leftElbowPos.y+","+leftElbowPos.z+"],"+
+			"\"rightElbow\":["+rightElbowPos.x+","+rightElbowPos.y+","+rightElbowPos.z+"],"+
+			"\"leftHand\":["+leftHandPos.x+","+leftHandPos.y+","+leftHandPos.z+"],"+
+			"\"rightHand\":["+rightHandPos.x+","+rightHandPos.y+","+rightHandPos.z+"],"+
+			"\"torso\":["+torsoPos.x+","+torsoPos.y+","+torsoPos.z+"],"+
+			"\"leftHip\":["+leftHipPos.x+","+leftHipPos.y+","+leftHipPos.z+"],"+
+			"\"rightHip\":["+rightHipPos.x+","+rightHipPos.y+","+rightHipPos.z+"],"+
+			"\"leftKnee\":["+leftKneePos.x+","+leftKneePos.y+","+leftKneePos.z+"],"+
+			"\"rightKnee\":["+rightKneePos.x+","+rightKneePos.y+","+rightKneePos.z+"],"+
+			"\"leftFoot\":["+leftFootPos.x+","+leftFootPos.y+","+leftFootPos.z+"],"+
+			"\"rightFoot\":["+rightFootPos.x+","+rightFootPos.y+","+rightFootPos.z+"]"+
+		"}");
   
 		int cState = getCurrentState();
 		int action = states[currentState][cState][1];
@@ -71,11 +97,17 @@ public class KinectStates {
 		context.getJointPositionSkeleton(userId,SimpleOpenNI.SKEL_NECK,neckPos);
 		context.getJointPositionSkeleton(userId,SimpleOpenNI.SKEL_LEFT_SHOULDER,leftShoulderPos);
 		context.getJointPositionSkeleton(userId,SimpleOpenNI.SKEL_RIGHT_SHOULDER,rightShoulderPos);
+		context.getJointPositionSkeleton(userId,SimpleOpenNI.SKEL_LEFT_ELBOW,leftElbowPos);
+		context.getJointPositionSkeleton(userId,SimpleOpenNI.SKEL_RIGHT_ELBOW,rightElbowPos);
+		context.getJointPositionSkeleton(userId,SimpleOpenNI.SKEL_LEFT_HAND,leftHandPos);
+		context.getJointPositionSkeleton(userId,SimpleOpenNI.SKEL_RIGHT_HAND,rightHandPos);
 		context.getJointPositionSkeleton(userId,SimpleOpenNI.SKEL_TORSO,torsoPos);
 		context.getJointPositionSkeleton(userId,SimpleOpenNI.SKEL_LEFT_HIP,leftHipPos);
 		context.getJointPositionSkeleton(userId,SimpleOpenNI.SKEL_RIGHT_HIP,rightHipPos);
-		context.getJointPositionSkeleton(userId,SimpleOpenNI.SKEL_LEFT_HAND,leftHandPos);
-		context.getJointPositionSkeleton(userId,SimpleOpenNI.SKEL_RIGHT_HAND,rightHandPos);
+		context.getJointPositionSkeleton(userId,SimpleOpenNI.SKEL_LEFT_KNEE,leftKneePos);
+		context.getJointPositionSkeleton(userId,SimpleOpenNI.SKEL_RIGHT_KNEE,rightKneePos);
+		context.getJointPositionSkeleton(userId,SimpleOpenNI.SKEL_LEFT_FOOT,leftFootPos);
+		context.getJointPositionSkeleton(userId,SimpleOpenNI.SKEL_RIGHT_FOOT,rightFootPos);
 
 		if( stateA() ) {
 			return 0;
