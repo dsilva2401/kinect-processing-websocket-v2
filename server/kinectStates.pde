@@ -47,16 +47,16 @@ public class KinectStates {
 	}
 
 	public String getCurrentAction() {
+  
+                // String data = "{"+"\"head\":["+headPos.x+","+headPos.y+","+headPos.z+"]"+"}";
+                println( "{"+
+                    "\"head\":["+headPos.x+","+headPos.y+","+headPos.z+"]"+
+                "}" );
+  
 		int cState = getCurrentState();
 		int action = states[currentState][cState][1];
 		currentState = states[currentState][cState][0];
 		return actions[action];
-		String data = "{"+
-			// Head
-			"\"head\":["+headPos.x+","+headPos.y+","+headPos.z+"]"+
-			// Neck
-		"}";
-		println( data );
 	}
 
 	int getCurrentState () {
